@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { Activity, Stethoscope } from 'lucide-react';
 import { SymptomInputForm } from './components/SymptomInputForm';
 import { ResultDisplay } from './components/ResultDisplay';
-import { PastQueries } from './components/PastQueries';
+// Removed: import { PastQueries } from './components/PastQueries';
 import { getSessionId } from './utils/sessionId';
 
 function App() {
   const [analysisResult, setAnalysisResult] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [refreshTrigger, setRefreshTrigger] = useState(0);
-
+  // Removed: const [refreshTrigger, setRefreshTrigger] = useState(0);
+  
   const analyzeSymptoms = async (symptoms) => {
     setLoading(true);
 
@@ -32,7 +32,7 @@ function App() {
 
       const result = await response.json();
       setAnalysisResult(result);
-      setRefreshTrigger(prev => prev + 1);
+      // REMOVED: setRefreshTrigger(prev => prev + 1);
     } catch (error) {
       console.error('Error analyzing symptoms:', error);
       throw error;
@@ -70,9 +70,8 @@ function App() {
             </div>
           )}
 
-          <div className="w-full flex justify-center mt-8">
-            <PastQueries refreshTrigger={refreshTrigger} />
-          </div>
+          {/* REMOVED: The entire PastQueries rendering block */}
+          
         </div>
 
         <footer className="mt-16 text-center text-sm text-gray-500">

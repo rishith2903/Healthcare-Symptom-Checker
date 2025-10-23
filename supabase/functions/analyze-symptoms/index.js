@@ -33,28 +33,7 @@ Deno.serve(async (req) => {
     // Generate LLM-based analysis
     const analysisResult = await analyzeSymptoms(symptoms);
 
-    // Store in database
-    const supabaseUrl = Deno.env.get("SUPABASE_URL");
-    const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
-
-    const storeResponse = await fetch(`${supabaseUrl}/rest/v1/symptom_queries`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "apikey": supabaseKey,
-        "Authorization": `Bearer ${supabaseKey}`,
-        "Prefer": "return=representation",
-      },
-      body: JSON.stringify({
-        symptoms,
-        session_id: sessionId,
-        analysis_result: analysisResult,
-      }),
-    });
-
-    if (!storeResponse.ok) {
-      console.error("Failed to store query:", await storeResponse.text());
-    }
+    
 
     return new Response(JSON.stringify(analysisResult), {
       headers: {
