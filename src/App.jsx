@@ -8,7 +8,6 @@ import { getSessionId } from './utils/sessionId';
 function App() {
   const [analysisResult, setAnalysisResult] = useState(null);
   const [loading, setLoading] = useState(false);
-  // Removed: const [refreshTrigger, setRefreshTrigger] = useState(0);
   
   const analyzeSymptoms = async (symptoms) => {
     setLoading(true);
@@ -27,15 +26,20 @@ function App() {
       });
 
       if (!response.ok) {
-        throw new Error('Failed to analyze symptoms');
+        
+        const errorText = await response.text();
+        console.error(`API Error - Status: ${response.status}, Body: ${errorText}`);
+        throw new Error(`Failed to analyze symptoms. Status: ${response.status}. Check console for details.`);
+        
       }
 
       const result = await response.json();
       setAnalysisResult(result);
-      // REMOVED: setRefreshTrigger(prev => prev + 1);
+      
     } catch (error) {
       console.error('Error analyzing symptoms:', error);
-      throw error;
+      
+      throw new Error(error.message || 'Failed to analyze symptoms. Please check the console for details.');
     } finally {
       setLoading(false);
     }
