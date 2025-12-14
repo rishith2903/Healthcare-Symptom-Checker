@@ -1,10 +1,11 @@
 # Healthcare Symptom Checker
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://healthcare-symptom-checker-8pol.onrender.com)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://healthcare-symptom-checker-psi.vercel.app/)
 
 A modern, educational symptom analysis application built with **React** (frontend) and **Node.js Express** (backend). This tool provides symptom analysis for educational purposes, helping users understand potential conditions and get recommendations.
 
-🔗 **Live API:** https://healthcare-symptom-checker-8pol.onrender.com
+🔗 **Live Demo:** https://healthcare-symptom-checker-psi.vercel.app/  
+🔗 **API Backend:** https://healthcare-symptom-checker-8pol.onrender.com
 
 ## ⚠️ Important Disclaimer
 
