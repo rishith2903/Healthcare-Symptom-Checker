@@ -8,37 +8,36 @@ import { getSessionId } from './utils/sessionId';
 function App() {
   const [analysisResult, setAnalysisResult] = useState(null);
   const [loading, setLoading] = useState(false);
-  
+
   const analyzeSymptoms = async (symptoms) => {
     setLoading(true);
 
     try {
       const sessionId = getSessionId();
-      const apiUrl = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/analyze-symptoms`;
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
-      const response = await fetch(apiUrl, {
+      const response = await fetch(`${apiUrl}/api/analyze-symptoms`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
         },
         body: JSON.stringify({ symptoms, sessionId }),
       });
 
       if (!response.ok) {
-        
+
         const errorText = await response.text();
         console.error(`API Error - Status: ${response.status}, Body: ${errorText}`);
         throw new Error(`Failed to analyze symptoms. Status: ${response.status}. Check console for details.`);
-        
+
       }
 
       const result = await response.json();
       setAnalysisResult(result);
-      
+
     } catch (error) {
       console.error('Error analyzing symptoms:', error);
-      
+
       throw new Error(error.message || 'Failed to analyze symptoms. Please check the console for details.');
     } finally {
       setLoading(false);
@@ -75,7 +74,7 @@ function App() {
           )}
 
           {/* REMOVED: The entire PastQueries rendering block */}
-          
+
         </div>
 
         <footer className="mt-16 text-center text-sm text-gray-500">

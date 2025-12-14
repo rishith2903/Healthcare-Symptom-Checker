@@ -20,16 +20,14 @@ A modern, educational symptom analysis application built with React and Supabase
 
 - **Frontend**: React 18 + Vite
 - **Styling**: Tailwind CSS
-- **Backend**: Supabase (Database + Edge Functions)
-- **Database**: PostgreSQL with Row Level Security
+- **Backend**: Node.js + Express
 - **Icons**: Lucide React
-- **Deployment**: Vite build system
+- **Deployment**: Vite build (frontend) + Node.js (backend)
 
 ## 📋 Prerequisites
 
 - Node.js (v16 or higher)
 - npm or yarn
-- Supabase account and project
 
 ## 🔧 Installation & Setup
 
@@ -45,29 +43,40 @@ A modern, educational symptom analysis application built with React and Supabase
    npm install
    ```
 
-3. **Set up Supabase**
-   - Create a new Supabase project at [supabase.com](https://supabase.com)
-   - Deploy the edge function:
-     ```bash
-     cd backend/supabase
-     supabase functions deploy analyze-symptoms
-     ```
-
-4. **Environment Configuration**
-   Create a `.env` file in the `frontend/` directory:
-   ```env
-   VITE_SUPABASE_URL=your_supabase_project_url
-   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+3. **Install backend dependencies**
+   ```bash
+   cd backend
+   npm install
    ```
 
-5. **Start the development server**
+4. **Environment Configuration**
+   
+   Frontend (create `frontend/.env`):
+   ```env
+   VITE_API_URL=http://localhost:3001
+   ```
+   
+   Backend (create `backend/.env`):
+   ```env
+   PORT=3001
+   NODE_ENV=development
+   ```
+
+5. **Start the backend server**
+   ```bash
+   cd backend
+   npm run dev
+   ```
+
+6. **Start the frontend (in a new terminal)**
    ```bash
    cd frontend
    npm run dev
    ```
 
-6. **Open your browser**
-   Navigate to `http://localhost:5173`
+7. **Open your browser**
+   - Frontend: `http://localhost:5173`
+   - Backend API: `http://localhost:3001`
 
 ## 📁 Project Structure
 
@@ -86,15 +95,15 @@ A modern, educational symptom analysis application built with React and Supabase
 │   │   └── index.css                  # Global styles
 │   ├── index.html
 │   ├── package.json
-│   ├── vite.config.js
-│   ├── tailwind.config.js
-│   ├── postcss.config.js
-│   └── eslint.config.js
-├── backend/                        # Supabase Edge Functions
-│   └── supabase/
-│       └── functions/
-│           └── analyze-symptoms/
-│               └── index.js           # Edge function for symptom analysis
+│   └── vite.config.js
+├── backend/                         # Node.js Express Backend
+│   ├── src/
+│   │   ├── index.js                    # Express server entry point
+│   │   ├── routes/
+│   │   │   └── symptoms.js             # API routes for symptom analysis
+│   │   └── services/
+│   │       └── symptomAnalyzer.js      # Core analysis logic
+│   └── package.json
 ├── README.md
 └── .gitignore
 ```
@@ -102,9 +111,9 @@ A modern, educational symptom analysis application built with React and Supabase
 ## 🔍 How It Works
 
 1. **Symptom Input**: Users describe their symptoms in a detailed text field
-2. **AI Analysis**: The Supabase Edge Function processes symptoms using pattern matching and generates educational insights
-3. **Result Display**: Shows possible conditions, recommendations, and urgency level
-4. **History Tracking**: Stores queries anonymously using session-based identification
+2. **API Request**: Frontend sends symptoms to Node.js Express backend
+3. **Analysis**: Backend processes symptoms using pattern matching and generates insights
+4. **Result Display**: Shows possible conditions, recommendations, and urgency level
 5. **Educational Focus**: Emphasizes consultation with healthcare professionals
 
 ## 🎨 Key Components
