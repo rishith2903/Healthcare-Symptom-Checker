@@ -1,6 +1,10 @@
 # Healthcare Symptom Checker
 
-A modern, educational symptom analysis application built with React and Supabase. This tool provides AI-powered symptom analysis for educational purposes, helping users understand potential conditions and get recommendations while emphasizing the importance of professional medical consultation.
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://healthcare-symptom-checker-8pol.onrender.com)
+
+A modern, educational symptom analysis application built with **React** (frontend) and **Node.js Express** (backend). This tool provides symptom analysis for educational purposes, helping users understand potential conditions and get recommendations.
+
+🔗 **Live API:** https://healthcare-symptom-checker-8pol.onrender.com
 
 ## ⚠️ Important Disclaimer
 
@@ -130,44 +134,31 @@ A modern, educational symptom analysis application built with React and Supabase
 - Urgency level indicators
 - Clear medical disclaimers
 
-### PastQueries
-- Session-based query history
-- Quick access to previous analyses
-- Privacy-focused anonymous tracking
-
-## 🗄️ Database Schema
-
-The application uses a single table `symptom_queries` with the following structure:
-
-- `id`: Unique identifier (UUID)
-- `symptoms`: User-provided symptom description (text)
-- `analysis_result`: AI-generated analysis (JSONB)
-- `session_id`: Anonymous session identifier (text)
-- `created_at`: Timestamp of query (timestamptz)
-
 ## 🔒 Security Features
 
-- **Row Level Security (RLS)**: Database-level access control
-- **Session-based Access**: Anonymous users can only access their own queries
-- **CORS Protection**: Proper CORS headers in edge functions
+- **CORS Protection**: Proper CORS headers in Express
 - **Input Validation**: Server-side validation of all inputs
+- **Session-based Tracking**: Anonymous session identification
 
 ## 🚀 Deployment
 
-### Build for Production
-```bash
-npm run build
-```
+### Backend (Render)
+1. Create a new **Web Service** on [Render](https://render.com)
+2. Connect your GitHub repository
+3. Configure:
+   - **Root Directory**: `backend`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start`
+4. Deploy!
 
-### Deploy to Vercel/Netlify
-1. Build the project
-2. Deploy the `dist` folder to your hosting platform
-3. Ensure environment variables are set in your hosting platform
-
-### Deploy Edge Function
-```bash
-supabase functions deploy analyze-symptoms
-```
+### Frontend (Vercel/Netlify)
+1. Build the frontend:
+   ```bash
+   cd frontend
+   npm run build
+   ```
+2. Deploy the `dist` folder
+3. Set environment variable: `VITE_API_URL=https://your-backend-url.onrender.com`
 
 ## 🧪 Development Scripts
 
