@@ -14,7 +14,7 @@ function App() {
 
     try {
       const sessionId = getSessionId();
-      const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+      const apiUrl = import.meta.env.VITE_API_URL || 'https://healthcare-symptom-checker-8pol.onrender.com';
 
       const response = await fetch(`${apiUrl}/api/analyze-symptoms`, {
         method: 'POST',
