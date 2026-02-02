@@ -29,7 +29,19 @@ A modern, educational symptom analysis application built with **React** (fronten
 - **Icons**: Lucide React
 - **Deployment**: Vite build (frontend) + Node.js (backend)
 
-## 📋 Prerequisites
+## � Project Statistics
+
+| Metric | Count |
+|--------|-------|
+| 🔌 API Endpoints | 2 |
+| ⚛️ React Components | 2 |
+| 🏥 Conditions Mapped | 7+ |
+| 🚨 Urgency Levels | 4 |
+| 🔑 Emergency Keywords | 12 |
+| ⚠️ Urgent Keywords | 7 |
+| 📁 Core Source Files | 10+ |
+
+## �📋 Prerequisites
 
 - Node.js (v16 or higher)
 - npm or yarn
